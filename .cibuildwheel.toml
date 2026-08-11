@@ -1,11 +1,11 @@
 [tool.cibuildwheel]
 build = [
-    "cp310-*",  # Python 3.10
-    "cp311-*",  # Python 3.11
-    "cp312-*",  # Python 3.12
-    "cp313-*",  # Python 3.13
-    "cp314-*",  # Python 3.14
-    "cp314t-*", # Python 3.14t (free-threading)
+    "cp310-*",  # CPython 3.10
+    "cp311-*",  # CPython 3.11
+    "cp312-*",  # CPython 3.12
+    "cp313-*",  # CPython 3.13
+    "cp314-*",  # CPython 3.14
+    "cp314t-*", # CPython 3.14t (free-threading)
 ]
 build-frontend = "build[uv]"
 test-command = "pytest {project}/tests/unit"
