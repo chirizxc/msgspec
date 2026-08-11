@@ -39,18 +39,18 @@ jobs:
           - { target: Pyodide (wasm32),   os: ubuntu-latest,      archs: wasm32, cibw_platform: pyodide }
 
         exclude:
-          - wheel:
-              target: Linux (riscv64)
-              os: ubuntu-24.04-riscv
-              archs: riscv64
-              # Unlabeled PRs match riscv64's required-label; otherwise empty keeps it.
-              required-label: >-
-                ${{
-                  github.event_name == 'pull_request' &&
-                  !contains(github.event.pull_request.labels.*.name, 'build-riscv64') &&
-                  'build-riscv64' ||
-                  ''
-                }}
+        - wheel:
+            target: Linux (riscv64)
+            os: ubuntu-24.04-riscv
+            archs: riscv64
+            # Unlabeled PRs match riscv64's required-label; otherwise empty keeps it.
+            required-label: >-
+              ${{
+                github.event_name == 'pull_request' &&
+                !contains(github.event.pull_request.labels.*.name, 'build-riscv64') &&
+                'build-riscv64' ||
+                ''
+              }}
 
     env:
       CIBW_ARCHS: "${{ matrix.wheel.archs }}"
