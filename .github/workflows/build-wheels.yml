@@ -34,7 +34,8 @@ jobs:
           - { target: macOS (universal2), os: macos-latest,       archs: universal2 }
           - { target: Windows (ARM64),    os: windows-11-arm,     archs: ARM64 }
           - { target: Windows (AMD64),    os: windows-latest,     archs: AMD64 }
-          - { target: Windows (x86),      os: windows-latest,     archs: x86 }
+          # TODO(chiri): support Windows x86
+          # - { target: Windows (x86),      os: windows-latest,     archs: x86 }
           - { target: Pyodide (wasm32),   os: ubuntu-latest,      archs: wasm32, cibw_platform: pyodide }
 
         exclude:

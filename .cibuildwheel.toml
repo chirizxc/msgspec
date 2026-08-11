@@ -35,9 +35,10 @@ archs = [
 ]
 
 [tool.cibuildwheel.windows]
+# TODO(chiri): support Windows x86
 archs = [
     "AMD64",
-    "x86",
+    # "x86",
     "ARM64",
 ]
 
