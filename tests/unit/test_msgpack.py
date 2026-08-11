@@ -34,6 +34,7 @@ skip_if_is_32bit = pytest.mark.skipif(
     reason="not supported on 32-bit architectures",
 )
 
+
 class FruitInt(enum.IntEnum):
     APPLE = 1
     BANANA = 2
