@@ -8,19 +8,19 @@ from setuptools.extension import Extension
 # Check for 32-bit windows builds, which currently aren't supported. We can't
 # rely on `platform.architecture` here since users can still run 32-bit python
 # builds on 64 bit architectures.
-if sys.platform == "win32" and sys.maxsize == (2**31 - 1):
-    import textwrap
-
-    error = """
-    ====================================================================
-    `msgspec` currently doesn't support 32-bit Python windows builds. If
-    this is important for your use case, please comment on this issue:
-
-    https://github.com/msgspec/msgspec/issues/845
-    ====================================================================
-    """
-    print(textwrap.dedent(error))
-    exit(1)
+# if sys.platform == "win32" and sys.maxsize == (2**31 - 1):
+#     import textwrap
+#
+#     error = """
+#     ====================================================================
+#     `msgspec` currently doesn't support 32-bit Python windows builds. If
+#     this is important for your use case, please comment on this issue:
+#
+#     https://github.com/msgspec/msgspec/issues/845
+#     ====================================================================
+#     """
+#     print(textwrap.dedent(error))
+#     exit(1)
 
 
 SANITIZE = os.environ.get("MSGSPEC_SANITIZE", False)
