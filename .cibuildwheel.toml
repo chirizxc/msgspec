@@ -5,7 +5,7 @@ build = [
     "cp312-*",  # Python 3.12
     "cp313-*",  # Python 3.13
     "cp314-*",  # Python 3.14
-    "cp314t-*", # Python 3.14 (free-threading)
+    "cp314t-*", # Python 3.14t (free-threading)
 ]
 build-frontend = "build[uv]"
 test-command = "pytest {project}/tests/unit"
