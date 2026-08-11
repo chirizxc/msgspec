@@ -22,51 +22,51 @@ jobs:
       fail-fast: false
       matrix:
         wheel:
-          - target: Linux (aarch64)
-            os: ubuntu-24.04-arm
-            archs: aarch64
-          - target: Linux (x86_64)
-            os: ubuntu-latest
-            archs: x86_64
-          - target: Linux (i686)
-            os: ubuntu-latest
-            archs: i686
-          - target: Linux (ppc64le)
-            os: ubuntu-latest
-            archs: ppc64le
-          - target: Linux (s390x)
-            os: ubuntu-latest
-            archs: s390x
-          - target: Linux (armv7l)
-            os: ubuntu-latest
-            archs: armv7l
-          - target: Linux (riscv64)
-            os: ubuntu-24.04-riscv
-            archs: riscv64
-            required-label: build-riscv64
-          - target: macOS (arm64)
-            os: macos-latest
-            archs: arm64
-          - target: macOS (x86_64)
-            os: macos-15-intel
-            archs: x86_64
-          - target: macOS (universal2)
-            os: macos-latest
-            archs: universal2
-          - target: Windows (ARM64)
-            os: windows-11-arm
-            archs: ARM64
-          - target: Windows (AMD64)
-            os: windows-latest
-            archs: AMD64
-            # TODO: support Windows x86
-            # - target: Windows (x86)
-            #   os: windows-latest
-            #   archs: x86
-          - target: Pyodide (wasm32)
-            os: ubuntu-latest
-            archs: wasm32
-            cibw_platform: pyodide
+        - target: Linux (aarch64)
+          os: ubuntu-24.04-arm
+          archs: aarch64
+        - target: Linux (x86_64)
+          os: ubuntu-latest
+          archs: x86_64
+        - target: Linux (i686)
+          os: ubuntu-latest
+          archs: i686
+        - target: Linux (ppc64le)
+          os: ubuntu-latest
+          archs: ppc64le
+        - target: Linux (s390x)
+          os: ubuntu-latest
+          archs: s390x
+        - target: Linux (armv7l)
+          os: ubuntu-latest
+          archs: armv7l
+        - target: Linux (riscv64)
+          os: ubuntu-24.04-riscv
+          archs: riscv64
+          required-label: build-riscv64
+        - target: macOS (arm64)
+          os: macos-latest
+          archs: arm64
+        - target: macOS (x86_64)
+          os: macos-15-intel
+          archs: x86_64
+        - target: macOS (universal2)
+          os: macos-latest
+          archs: universal2
+        - target: Windows (ARM64)
+          os: windows-11-arm
+          archs: ARM64
+        - target: Windows (AMD64)
+          os: windows-latest
+          archs: AMD64
+          # TODO: support Windows x86
+          # - target: Windows (x86)
+          #   os: windows-latest
+          #   archs: x86
+        - target: Pyodide (wasm32)
+          os: ubuntu-latest
+          archs: wasm32
+          cibw_platform: pyodide
 
         exclude:
         - wheel:
