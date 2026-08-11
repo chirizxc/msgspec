@@ -1,10 +1,55 @@
 [tool.cibuildwheel]
-build = "cp310-* cp311-* cp312-* cp313-* cp314-* cp314t-*"
+build = [
+    "cp310-*",  # Python 3.10
+    "cp311-*",  # Python 3.11
+    "cp312-*",  # Python 3.12
+    "cp313-*",  # Python 3.13
+    "cp314-*",  # Python 3.14
+    "cp314t-*", # Python 3.14 (free-threading)
+]
 build-frontend = "build[uv]"
 test-command = "pytest {project}/tests/unit"
-test-groups = ["test-unit"]
+test-groups = ["test-unit"] # uv pip install --group test-unit
 
 [tool.cibuildwheel.pyodide]
 build = "cp314-*"
 # https://cibuildwheel.pypa.io/en/stable/platforms/#pyodide
 test-command = "python -m pytest {project}/tests/unit"
+
+[tool.cibuildwheel.linux]
+archs = [
+    "x86_64",
+    "i686",
+    "aarch64",
+    "ppc64le",
+    "s390x",
+    "armv7l",
+    "riscv64",
+]
+
+[tool.cibuildwheel.macos]
+archs = [
+    "x86_64",
+    "arm64",
+    "universal2",
+]
+before-all = [
+    "brew install llvm",
+]
+environment = { CC = "$(brew --prefix llvm)/bin/clang", CXX = "$(brew --prefix llvm)/bin/clang++" }
+
+[tool.cibuildwheel.windows]
+archs = [
+    "AMD64",
+    "x86",
+    "ARM64",
+]
+
+[[tool.cibuildwheel.overrides]]
+# uv is not available in these images
+#
+# See:
+# * https://github.com/astral-sh/uv/issues/10883
+# * https://github.com/astral-sh/uv/issues/17764
+build-frontend = "build"
+select = "*-musllinux_{ppc64le,s390x,riscv64}"
