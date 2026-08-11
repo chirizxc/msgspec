@@ -67,7 +67,6 @@ jobs:
           os: ubuntu-latest
           archs: wasm32
           cibw_platform: pyodide
-
         exclude:
         - wheel:
             target: Linux (riscv64)
