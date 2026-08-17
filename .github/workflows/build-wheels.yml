@@ -31,15 +31,30 @@ jobs:
         - target: Linux (i686)
           os: ubuntu-latest
           archs: i686
-        - target: Linux (ppc64le)
+        - target: Linux / musllinux (ppc64le)
           os: ubuntu-latest
           archs: ppc64le
-        - target: Linux (s390x)
+          cibw_build: "*-musllinux_*"
+        - target: Linux / manylinux (ppc64le)
+          os: ubuntu-latest
+          archs: ppc64le
+          cibw_build: "*-manylinux_*"
+        - target: Linux / musllinux (s390x)
           os: ubuntu-latest
           archs: s390x
-        - target: Linux (armv7l)
+          cibw_build: "*-musllinux_*"
+        - target: Linux / manylinux (s390x)
+          os: ubuntu-latest
+          archs: s390x
+          cibw_build: "*-manylinux_*"
+        - target: Linux / musllinux (armv7l)
           os: ubuntu-latest
           archs: armv7l
+          cibw_build: "*-musllinux_*"
+        - target: Linux / manylinux (armv7l)
+          os: ubuntu-latest
+          archs: armv7l
+          cibw_build: "*-manylinux_*"
         - target: Linux (riscv64)
           os: ubuntu-24.04-riscv
           archs: riscv64
@@ -83,8 +98,9 @@ jobs:
 
     env:
       CIBW_ARCHS: "${{ matrix.wheel.archs }}"
+      CIBW_BUILD: "${{ matrix.wheel.cibw_build || '*' }}"
       CIBW_PLATFORM: "${{ matrix.wheel.cibw_platform || 'auto' }}"
-      ARTIFACT_NAME: artifact-wheels-${{ matrix.wheel.cibw_platform || matrix.wheel.os }}-${{ matrix.wheel.archs }}
+      ARTIFACT_NAME: artifact-wheels-${{ matrix.wheel.cibw_platform || matrix.wheel.os }}-${{ matrix.wheel.archs }}-${{ matrix.wheel.cibw_build || 'all' }}
       PACKAGE_DIR: dist/${{ inputs.sdist-name }}
 
     steps:
@@ -105,7 +121,10 @@ jobs:
         enable-cache: false
 
     - name: Set up QEMU
-      if: runner.os == 'Linux' && contains(fromJSON('["ppc64le","s390x","armv7l"]'), matrix.wheel.archs)
+      if: >-
+        runner.os == 'Linux' &&
+        contains(fromJSON('["ppc64le","s390x","armv7l"]'), matrix.wheel.archs) &&
+        matrix.wheel.cibw_build != '*-musllinux_*'
       uses: docker/setup-qemu-action@96fe6ef7f33517b61c61be40b68a1882f3264fb8  # v4.2.0
       with:
         platforms: all
